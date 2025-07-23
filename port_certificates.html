@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificates || Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="./images/eyeimg.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: black;
+            color: #0f0;
+            overflow-x: hidden;
+        }
+
+        /* Matrix BG */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: black;
+            z-index: -1;
+        }
+
+        canvas {
+            display: block;
+        }
+
+        /* Header from homepage.html */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background: rgba(0, 255, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 255, 0, 0.1);
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: #0f0;
+            position: relative;
+        }
+
+        .logo .glitch {
+            position: absolute;
+            left: 0;
+            color: #0f0;
+            opacity: 0.5;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            20% {
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                transform: translate(2px, -1px);
+            }
+
+            60% {
+                transform: translate(-1px, -2px);
+            }
+
+            80% {
+                transform: translate(1px, 1px);
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        /* Certificate Page Table */
+        main {
+            padding: 6rem 1rem 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            color: #0f0;
+            text-shadow: 0 0 8px #0f0;
+            margin-bottom: 2rem;
+        }
+
+        .certificates-table {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+
+        .certificates-table td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .certificate-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #0f0;
+        }
+
+        .certificate-thumb {
+            width: 200px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .certificate-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px #0f0;
+            z-index: 2;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .certificates-table td {
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+
+            .certificates-table tr {
+                display: block;
+                margin-bottom: 2rem;
+            }
+
+            .certificate-title {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+        .certificates-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.85);
+            /* solid feel */
+            border: 2px solid #0f0;
+            border-radius: 20px;
+            box-shadow:
+                0 0 10px #0f0,
+                0 0 20px #0f0 inset;
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .certificates-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(0, 255, 0, 0.08), transparent),
+                radial-gradient(circle at bottom right, rgba(0, 255, 0, 0.08), transparent);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+        }
+
+        .lightbox.hidden {
+            display: none;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid #0f0;
+            border-radius: 10px;
+            box-shadow: 0 0 30px #0f0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 2rem;
+            right: 3rem;
+            font-size: 3rem;
+            color: #0f0;
+            cursor: pointer;
+            z-index: 2100;
+            text-shadow: 0 0 10px #0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="matrix-bg"><canvas id="matrix"></canvas></div>
+
+    <header>
+        <div class="logo">NJR<span class="glitch">NJR</span></div>
+        <nav>
+            <a href="homepage.html">Back</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Lightbox Overlay -->
+        <div id="lightbox" class="lightbox hidden">
+            <span class="close-btn">&times;</span>
+            <img id="lightbox-img" src="" alt="Full View" />
+        </div>
+
+        <h1>All Certificates</h1>
+
+        <div class="certificates-wrapper">
+            <table class="certificates-table">
+                <tr>
+                    <td class="certificate-title">Software Developer Intern, Tisser Technologies, Kottayam – 2025</td>
+                    <td><img class="certificate-thumb" src="./images/scrs6.png"
+                            alt="Intern" /></td>
+                </tr>
+                <tr>
+                    <td class="certificate-title">Unity Game Development, Cursa – 2025</td>
+                    <td><img class="certificate-thumb" src="./images/scrs5.png"
+                            alt="Unity" /></td>
+                </tr>
+                <tr>
+                    <td class="certificate-title"> Introduction to Figma – 2025</td>
+                    <td><img class="certificate-thumb" src="./images/scrs18.png"
+                            alt="Figma" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title">Introduction to MS Excel, Simplilearn – 2025</td>
+                    <td><img class="certificate-thumb" src="./images/scrs3.png"
+                            alt="Excel" /></td>
+                </tr>
+                <tr>
+                    <td class="certificate-title">Google Analytics, Online Course – 2025</td>
+                    <td><img class="certificate-thumb" src="./images/scrs1.png"
+                            alt="Analytics" /></td>
+                </tr>
+                <tr>
+                    <td class="certificate-title">Blender 3.0 basics by CG Cookies, Cursa – 2025</td>
+                    <td><img class="certificate-thumb" src="./images/scrs9.png"
+                            alt="Blender" /></td>
+                </tr>
+                <tr>
+                    <td class="certificate-title">Software Development using React.js And Node.js Intern, Tisser Technologies, Kottayam – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs19.png"
+                            alt="Intern" /></td>
+                </tr>
+                <tr>
+                    <td class="certificate-title">Computer Graphics Animation, Saintgits College – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs2.png"
+                            alt="Graphics" /></td>
+                </tr>
+                <tr>
+                    <td class="certificate-title">Artificial Intelligence Primer, Infosys – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs4.png" alt="AI" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title"> Artificial Intelligence Foundation Certification, Infosys – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs10.png" alt="AI" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title"> Computer Vision 101, Infosys – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs11.png" alt="AI" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title"> Introduction to Artificial Intelligence – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs12.png" alt="AI" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title"> Introduction to Data Science – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs13.png" alt="AI" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title"> Introduction to Deep Learning – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs14.png" alt="AI" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title"> Introduction to Robotic Process Automation – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs15.png" alt="AI" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title"> Introduction to Natural Language Processing – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs16.png" alt="AI" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title"> NPTEL's Privacy and Security in Online Social Media – 2024</td>
+                    <td><img class="certificate-thumb" src="./images/scrs17.png" alt="NPTEL" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title">IHRD Tharang'23 Workshop on Python – 2023</td>
+                    <td><img class="certificate-thumb" src="./images/scrs7.png" alt="Python" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="certificate-title">IHRD Tharang'23 Workshop on 3ds MAX – 2023</td>
+                    <td><img class="certificate-thumb" src="./images/scrs8.png" alt="3dsMAX" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </main>
+
+
+    <!-- Matrix JS -->
+    <script>
+        const canvas = document.getElementById("matrix");
+        const ctx = canvas.getContext("2d");
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+        const letters = "01";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array.from({ length: columns }, () => 1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0F0";
+            ctx.font = fontSize + "px monospace";
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 33);
+
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.close-btn');
+
+        document.querySelectorAll('.certificate-thumb').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.remove('hidden');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.classList.add('hidden');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.add('hidden');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                lightbox.classList.add('hidden');
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>

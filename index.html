@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio || Naveen JR</title>
+    <link rel="icon" type="image/png" href="./images/eyeimg.png">
+    <link rel="stylesheet" href="web_resume.css">
+</head>
+
+<body>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .music-player {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 300px;
+            height: 100px;
+            margin-right: 100px;
+        }
+
+        .music-player .song-info {
+            color: white;
+            font-size: 14px;
+        }
+
+        .music-player .controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .music-player button {
+            background-color: #3498db;
+            border: none;
+            padding: 10px;
+            margin: 0 5px;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .music-player button:hover {
+            background-color: #2980b9;
+        }
+
+        .music-player audio {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .music-player-container {
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .music-player {
+                width: 50%;
+                flex-direction: column;
+                height: auto;
+                padding: 10px;
+                text-align: center;
+            }
+
+            .music-player .song-info {
+                flex-direction: column;
+            }
+
+            .profile-photo {
+                width: 80px;
+                height: 80px;
+            }
+
+            .title {
+                font-size: 20px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            .footer {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+    </style>
+    </head>
+
+    <body>
+
+
+
+        <div class="music-player-container">
+            <!-- First Music Player -->
+            <div class="music-player">
+                <div class="song-info">
+                    <img id="song-image" src="./images/imgg.jpg" alt="Album Art" class="album-art">
+                    <div>
+                        <span id="song-name">Reverie, part two -Vindsvept</span>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button onclick="playPause()">Play</button>
+                    <button onclick="stopAudio()">Stop</button>
+                </div>
+                <audio id="audio" src="./music/music.mp3"></audio>
+            </div>
+
+            <!-- Second Music Player -->
+            <div class="music-player">
+                <div class="song-info">
+                    <img id="song-image" src="./images/imgg.jpg" alt="Album Art" class="album-art">
+                    <div>
+                        <span id="song-name">Through the Fog -Vindsvept</span>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button onclick="playPause2()">Play</button>
+                    <button onclick="stopAudio2()">Stop</button>
+                </div>
+                <audio id="audio2" src="./music/music2.mp3"></audio>
+            </div>
+        </div>
+
+
+
+
+        <script>
+            let isPlaying = false;
+            const audio = document.getElementById('audio');
+            const playButton = document.querySelector('button:nth-child(1)');
+
+            // Set the default sound level to 30%
+            audio.volume = 0.1;
+
+            function playPause() {
+                if (isPlaying) {
+                    audio.pause();
+                    playButton.textContent = 'Play';
+                } else {
+                    audio.play();
+                    playButton.textContent = 'Pause';
+                }
+                isPlaying = !isPlaying;
+            }
+
+            function stopAudio() {
+                audio.pause();
+                audio.currentTime = 0;
+                playButton.textContent = 'Play';
+                isPlaying = false;
+            }
+        </script>
+
+
+
+
+        <video autoplay loop muted class="video-background">
+            <source src="./videos/loop.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+
+        <div class="container">
+            <img src="./images/eyeimg.png" alt="Your Photo" class="profile-photo">
+            <h1 class="title">CHECK OUT !!</h1>
+            <button class="btn" onclick="openHomepage()">View the Portfolio..</button>
+        </div>
+
+        <script src="web_resume.js"></script>
+    </body>
+
+    <footer class="footer">
+        <p class="quote">""An investment in knowledge pays the best interest."</p>
+        <p class="quote">⚠️ This portfolio is best viewed on desktop or laptop.</p>
+        <p class="copyright">&copy; 2025 Naveen Jonce Reji. All rights reserved.</p>
+    </footer>
+
+</html>

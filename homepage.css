@@ -1,0 +1,55 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Homepage Layout */
+.homepage-container {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+}
+
+.left-panel {
+  width: 20%;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.right-panel {
+  width: 80%;
+  background-color: #f3f4f6; /* Light Gray */
+  color: #333;
+  padding: 20px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 10px; 
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px 40px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Output Section */
+.output-container {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
