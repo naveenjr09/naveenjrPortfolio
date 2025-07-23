@@ -7,16 +7,16 @@ Welcome to my web portfolio! This project showcases my design, animation, and fr
 ## 📸 Screenshots
 
 ### 🟢 Screenshot 1 – Opening Page
-![Opening Page](screenshots/screenshot1.png)
+![Opening Page](screenshots/Screenshot1.png)
 
 ### 🟢 Screenshot 2 – Home Page
-![Home Page](screenshots/screenshot2.png)
+![Home Page](screenshots/Screenshot2.png)
 
 ### 🟢 Screenshot 3 – Profile Section
-![Profile Section](screenshots/screenshot3.png)
+![Profile Section](screenshots/Screenshot3.png)
 
 ### 🟢 Screenshot 4 – Fun Section
-![Fun Section](screenshots/screenshot4.png)
+![Fun Section](screenshots/Screenshot4.png)
 
 ### 🟢 Screenshot 5 – Rotating Images (Carousel / CSS Animation)
-![Carousel](screenshots/screenshot5.png)
+![Carousel](screenshots/Screenshot5.png)
