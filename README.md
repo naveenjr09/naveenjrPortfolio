@@ -20,3 +20,11 @@ Welcome to my web portfolio! This project showcases my design, animation, and fr
 
 ### 🟢 Screenshot 5 – Rotating Images (Carousel / CSS Animation)
 ![Carousel](screenshots/screenshot5.png)
+
+
+
+## 🧠 Tech Stack
+
+- 💡 HTML – 10%
+- 🎨 CSS – 50%
+- ⚙️ JavaScript – 40%
